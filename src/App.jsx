@@ -576,7 +576,7 @@ export default function App() {
               <div className="grid grid-cols-2 gap-3">
                 <div className="col-span-2 sm:col-span-1 h-64 bg-[#1E2024] border border-[#2E3035] overflow-hidden">
                   <img
-                    src="/mechanic-lead.jpg"
+                    src="/pic2.png"
                     alt="Jerold Escabusa, head mechanic"
                     className="w-full h-full object-cover"
                     onError={(e) => {
@@ -586,7 +586,7 @@ export default function App() {
                 </div>
                 <div className="col-span-2 sm:col-span-1 h-64 bg-[#1E2024] border border-[#2E3035] overflow-hidden">
                   <img
-                    src="/mechanic-action.jpg"
+                    src="/blur.jpg"
                     alt="Jerold working on an engine"
                     className="w-full h-full object-cover"
                     onError={(e) => {
