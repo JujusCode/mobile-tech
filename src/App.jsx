@@ -586,7 +586,7 @@ export default function App() {
                 </div>
                 <div className="col-span-2 sm:col-span-1 h-64 bg-[#1E2024] border border-[#2E3035] overflow-hidden">
                   <img
-                    src="/blur.jpg"
+                    src="/blur1.jpg"
                     alt="Jerold working on an engine"
                     className="w-full h-full object-cover"
                     onError={(e) => {
