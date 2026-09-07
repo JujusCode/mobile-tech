@@ -40,11 +40,67 @@ export default function App() {
     issue: "",
   });
 
+  const [emailModalOpen, setEmailModalOpen] = useState(false);
+
   const phoneNumber = "0431340980";
   const emailAddress = "jeroldinaus@gmail.com";
   const facebookUrl = "https://www.facebook.com/jerold.escabusa";
-  const whatsappUrl = "https://wa.me/61431340980"; // Australian format +61 431 340 980
+  const whatsappUrl = "https://wa.me/61431340980";
   const logoPath = "/logo.jpg";
+
+  const emailSubject = encodeURIComponent(
+    "Inquiry - Automotive Repairs & Servicing",
+  );
+  const emailBody = encodeURIComponent(
+    "Hi Jerold,\n\nI would like to inquire about servicing/repairs for my vehicle.\n\nLocation:\nVehicle Model:\nIssue:",
+  );
+
+  const emailPlatforms = [
+    {
+      name: "Gmail",
+      icon: (
+        <svg
+          className="w-4 h-4 shrink-0"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+        >
+          <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z" />
+        </svg>
+      ),
+      url: `https://mail.google.com/mail/?view=cm&fs=1&to=${emailAddress}&su=${emailSubject}&body=${emailBody}`,
+    },
+    {
+      name: "Outlook / Hotmail",
+      icon: (
+        <svg
+          className="w-4 h-4 shrink-0"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+        >
+          <path d="M11.5 2.25v8.5H1v-7a1.5 1.5 0 0 1 1.5-1.5h9zm1 0h9a1.5 1.5 0 0 1 1.5 1.5v7h-10.5v-8.5zm-11.5 9.5h10.5v10H2.5A1.5 1.5 0 0 1 1 20.25v-8.5zm11.5 0H23v8.5a1.5 1.5 0 0 1-1.5 1.5h-9v-10z" />
+        </svg>
+      ),
+      url: `https://outlook.live.com/mail/0/deeplink/compose?to=${emailAddress}&subject=${emailSubject}&body=${emailBody}`,
+    },
+    {
+      name: "Yahoo Mail",
+      icon: (
+        <svg
+          className="w-4 h-4 shrink-0"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+        >
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.5h-2v-5l-3-5h2.3l1.7 3.3L13.7 6.5H16l-3 5v5z" />
+        </svg>
+      ),
+      url: `https://compose.mail.yahoo.com/?to=${emailAddress}&subject=${emailSubject}&body=${emailBody}`,
+    },
+    {
+      name: "Default Mail App (Apple Mail / Windows)",
+      icon: <Mail className="w-4 h-4 shrink-0 text-[#D89B3C]" />,
+      url: `mailto:${emailAddress}?subject=${emailSubject}&body=${emailBody}`,
+    },
+  ];
 
   useEffect(() => {
     const id = "ks-mobile-tech-fonts";
@@ -137,7 +193,7 @@ export default function App() {
             Direct Contact Options:
           </span>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-1">
-            {/* 1. Number */}
+            {/* 1. Phone */}
             <a
               href={`tel:${phoneNumber}`}
               className="flex items-center gap-1.5 text-[#D8D4C8] hover:text-[#D89B3C] transition-colors"
@@ -146,14 +202,15 @@ export default function App() {
               <span>{phoneNumber}</span>
             </a>
 
-            {/* 2. Email */}
-            <a
-              href={`mailto:${emailAddress}`}
+            {/* 2. Email Modal Trigger */}
+            <button
+              type="button"
+              onClick={() => setEmailModalOpen(true)}
               className="flex items-center gap-1.5 text-[#D8D4C8] hover:text-[#D89B3C] transition-colors"
             >
               <Mail className="w-3.5 h-3.5 text-[#D89B3C]" />
               <span>{emailAddress}</span>
-            </a>
+            </button>
 
             {/* 3. Facebook */}
             <a
@@ -162,7 +219,13 @@ export default function App() {
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 text-[#D8D4C8] hover:text-[#D89B3C] transition-colors"
             >
-              <ExternalLink className="w-3.5 h-3.5 text-[#D89B3C]" />
+              <svg
+                className="w-3.5 h-3.5 fill-[#1877F2]"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+              </svg>
               <span>Facebook</span>
             </a>
 
@@ -276,7 +339,7 @@ export default function App() {
                   className="block text-6xl sm:text-7xl lg:text-8xl mt-1 tracking-wide"
                   style={{ fontFamily: "'Bebas Neue', sans-serif" }}
                 >
-                  Automotive Repairs & Servicing
+                  Automotive Repairs &amp; Servicing
                 </span>
               </h1>
 
@@ -287,6 +350,7 @@ export default function App() {
                 truck.
               </p>
 
+              {/* 4 Contact Buttons in Hero */}
               <div className="mt-9 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-lg">
                 {/* 1. Phone */}
                 <a
@@ -308,14 +372,15 @@ export default function App() {
                   <span>Chat on WhatsApp</span>
                 </a>
 
-                {/* 3. Email */}
-                <a
-                  href={`mailto:${emailAddress}`}
+                {/* 3. Email Modal Trigger */}
+                <button
+                  type="button"
+                  onClick={() => setEmailModalOpen(true)}
                   className="inline-flex items-center justify-center gap-2.5 bg-[#1E2024] hover:bg-[#272A30] text-[#D8D4C8] border border-[#3A3C41] font-semibold px-4 py-3 rounded-sm text-[14px] transition-colors"
                 >
                   <Mail className="w-4 h-4 text-[#D89B3C] shrink-0" />
                   <span>Email Jerold</span>
-                </a>
+                </button>
 
                 {/* 4. Facebook */}
                 <a
@@ -693,7 +758,7 @@ export default function App() {
                     onChange={(e) =>
                       setFormData({ ...formData, location: e.target.value })
                     }
-                    placeholder="e.g. 25 Murray St, Colac or highway shoulder"
+                    placeholder="e.g. Murray St, Colac or highway shoulder"
                     className="w-full bg-transparent border-b-2 border-[#C9BF9F] px-0.5 py-2 text-[15px] text-[#17181B] placeholder:text-[#A39C7E] focus:outline-none focus:border-[#B3712A] transition-colors"
                   />
                 </div>
@@ -772,13 +837,14 @@ export default function App() {
                 {phoneNumber}
               </a>
               <span className="text-[#3A3C41]">•</span>
-              <a
-                href={`mailto:${emailAddress}`}
+              <button
+                type="button"
+                onClick={() => setEmailModalOpen(true)}
                 className="text-[#D89B3C] hover:underline flex items-center gap-1"
               >
                 <Mail className="w-3.5 h-3.5" />
                 {emailAddress}
-              </a>
+              </button>
               <span className="text-[#3A3C41]">•</span>
               <a
                 href={facebookUrl}
@@ -807,6 +873,54 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      {/* Email Platform Selector Modal */}
+      {emailModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+          <div className="bg-[#1E2024] border border-[#3A3C41] w-full max-w-md p-6 rounded-sm shadow-2xl relative">
+            <div className="flex items-center justify-between pb-4 mb-4 border-b border-[#2E3035]">
+              <div>
+                <h3
+                  className="text-2xl text-white tracking-wide"
+                  style={{ fontFamily: "'Bebas Neue', sans-serif" }}
+                >
+                  Choose Email Provider
+                </h3>
+                <p className="text-xs text-[#9C978A] mt-0.5">
+                  Sending to:{" "}
+                  <span className="text-[#D89B3C]">{emailAddress}</span>
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setEmailModalOpen(false)}
+                className="text-[#9C978A] hover:text-white text-lg font-bold px-2 py-1"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="space-y-2.5">
+              {emailPlatforms.map((platform, idx) => (
+                <a
+                  key={idx}
+                  href={platform.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setEmailModalOpen(false)}
+                  className="flex items-center gap-3 w-full p-3.5 bg-[#17181B] hover:bg-[#26282C] border border-[#2E3035] hover:border-[#D89B3C] rounded-sm text-sm text-[#D8D4C8] hover:text-white transition-all group"
+                >
+                  <div className="text-[#D89B3C] group-hover:scale-110 transition-transform">
+                    {platform.icon}
+                  </div>
+                  <span className="font-medium flex-1">{platform.name}</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-[#5C594F] group-hover:text-[#D89B3C]" />
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
