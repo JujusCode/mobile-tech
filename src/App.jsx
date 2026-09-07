@@ -1,26 +1,22 @@
 import React, { useState, useEffect } from "react";
 import {
   Phone,
+  Mail,
+  MessageCircle,
   Wrench,
   Cpu,
-  Sparkles,
   Zap,
   AlertTriangle,
   Car,
-  MapPin,
   Clock,
   CheckCircle2,
-  Navigation,
   Send,
   ExternalLink,
-  Store,
   Award,
   UserCheck,
 } from "lucide-react";
 
-/* Thin row of "punched" holes — used to give panels a tear-off / carbon-copy
-   work-order feel. `hole` is the colour showing through the holes, i.e. the
-   colour of whatever sits behind the panel. */
+/* Thin row of punched holes for the work-order style panel */
 function Perforation({ hole }) {
   return (
     <div
@@ -45,15 +41,11 @@ export default function App() {
   });
 
   const phoneNumber = "0431340980";
-  const shopAddress = "2 Thompson St, Colac VIC 3250";
-  const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
-    shopAddress,
-  )}`;
+  const emailAddress = "jeroldinaus@gmail.com";
   const facebookUrl = "https://www.facebook.com/jerold.escabusa";
+  const whatsappUrl = "https://wa.me/61431340980"; // Australian format +61 431 340 980
+  const logoPath = "/logo.jpg";
 
-  const logoPath = "/logoo.png";
-
-  // Pull in the display + body typefaces without touching index.html.
   useEffect(() => {
     const id = "ks-mobile-tech-fonts";
     if (document.getElementById(id)) return;
@@ -70,7 +62,7 @@ export default function App() {
       number: "01",
       icon: <Cpu className="w-5 h-5" />,
       title: "Computerised OBD scanner diagnostics",
-      desc: "Advanced electronic scan tools identifying check-engine lights, sensor failures, ECU fault codes, live data stream issues, and transmission glitches.",
+      desc: "Advanced electronic scan tools identifying check-engine lights, sensor failures, ECU fault codes, live data stream issues, and engine glitches.",
       badge: "Diagnostic",
       image: "/service-scanner.jpg",
       isVideo: false,
@@ -78,8 +70,8 @@ export default function App() {
     {
       number: "02",
       icon: <Wrench className="w-5 h-5" />,
-      title: "Engine & mechanical repairs",
-      desc: "Timing belts, head gaskets, alternators, fuel pumps, radiator overhauls, cooling systems, oil changes, leaks, and preventative maintenance.",
+      title: "Engine & general mechanical repairs",
+      desc: "Timing belts, head gaskets, alternators, fuel pumps, radiator overhauls, cooling systems, oil changes, leaks, and scheduled preventative maintenance.",
       badge: "Major & minor",
       image: "/service-engine.jpg",
       isVideo: false,
@@ -95,27 +87,18 @@ export default function App() {
     },
     {
       number: "04",
-      icon: <Sparkles className="w-5 h-5" />,
-      title: "Professional auto detailing",
-      desc: "Full interior sanitisation, deep carpet stain extraction, exterior buffing, wash, and surface restoration to bring back that brand-new look and feel.",
-      badge: "Showroom care",
+      icon: <AlertTriangle className="w-5 h-5" />,
+      title: "Emergency roadside assistance",
+      desc: "Dead on the road or broken down at an intersection? We come straight to your car equipped with tools and emergency parts to get you rolling again.",
+      badge: "On call",
       image: "/detailing.mp4",
       isVideo: true,
     },
     {
       number: "05",
-      icon: <AlertTriangle className="w-5 h-5" />,
-      title: "Emergency roadside assistance",
-      desc: "Dead on the road or broken down at an intersection? We come straight to your car equipped with tools and emergency parts to get you rolling again.",
-      badge: "On call",
-      image: "/service-roadside.jpg",
-      isVideo: false,
-    },
-    {
-      number: "06",
       icon: <Car className="w-5 h-5" />,
       title: "Brakes, rotors & suspension",
-      desc: "Brake pad replacements, caliper servicing, disc rotor changes, shock absorber fixes, ball joints, and suspension bushing inspection.",
+      desc: "Brake pad replacements, caliper servicing, disc rotor changes, shock absorber fixes, ball joints, and suspension bushing inspection on-site.",
       badge: "Safety first",
       image: "/brakes.mp4",
       isVideo: true,
@@ -126,7 +109,7 @@ export default function App() {
     e.preventDefault();
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
-      const headerOffset = 82;
+      const headerOffset = 110;
       const elementPosition = targetElement.getBoundingClientRect().top;
       const offsetPosition =
         elementPosition + window.pageYOffset - headerOffset;
@@ -147,6 +130,56 @@ export default function App() {
       className="min-h-screen bg-[#17181B] text-[#D8D4C8] selection:bg-[#D89B3C] selection:text-[#17181B]"
       style={{ fontFamily: "'Barlow', sans-serif" }}
     >
+      {/* Top 4 Ways Contact Bar */}
+      <div className="bg-[#111214] border-b border-[#2A2C31] text-xs py-2 px-4">
+        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-y-2 gap-x-6">
+          <span className="text-[#8E8A7E] font-medium hidden sm:inline">
+            Direct Contact Options:
+          </span>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-1">
+            {/* 1. Number */}
+            <a
+              href={`tel:${phoneNumber}`}
+              className="flex items-center gap-1.5 text-[#D8D4C8] hover:text-[#D89B3C] transition-colors"
+            >
+              <Phone className="w-3.5 h-3.5 text-[#D89B3C]" />
+              <span>{phoneNumber}</span>
+            </a>
+
+            {/* 2. Email */}
+            <a
+              href={`mailto:${emailAddress}`}
+              className="flex items-center gap-1.5 text-[#D8D4C8] hover:text-[#D89B3C] transition-colors"
+            >
+              <Mail className="w-3.5 h-3.5 text-[#D89B3C]" />
+              <span>{emailAddress}</span>
+            </a>
+
+            {/* 3. Facebook */}
+            <a
+              href={facebookUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-[#D8D4C8] hover:text-[#D89B3C] transition-colors"
+            >
+              <ExternalLink className="w-3.5 h-3.5 text-[#D89B3C]" />
+              <span>Facebook</span>
+            </a>
+
+            {/* 4. WhatsApp */}
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-[#D8D4C8] hover:text-[#D89B3C] transition-colors"
+            >
+              <MessageCircle className="w-3.5 h-3.5 text-[#25D366]" />
+              <span>WhatsApp</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
       {/* Hazard strip */}
       <div
         aria-hidden="true"
@@ -186,7 +219,7 @@ export default function App() {
                 K&amp;S Mobile Tech
               </span>
               <span className="text-[11px] text-[#9C978A] block">
-                Mobile &amp; in-shop automotive repairs
+                Automotive servicing &amp; general mechanical repairs
               </span>
             </div>
           </a>
@@ -195,7 +228,6 @@ export default function App() {
             {[
               ["services", "Services"],
               ["mechanic", "Our mechanic"],
-              ["shop", "Workshop"],
               ["contact", "Dispatch"],
             ].map(([id, label]) => (
               <a
@@ -230,7 +262,7 @@ export default function App() {
             <div className="lg:col-span-7">
               <div className="inline-flex items-center gap-2 pl-3 pr-4 py-1.5 bg-[#1E2024] border-l-4 border-[#D89B3C] text-[#C9C5B8] text-sm mb-7">
                 <Clock className="w-4 h-4 text-[#D89B3C] shrink-0" />
-                Mobile callout or book in at the Colac workshop
+                On-call mobile service across Colac & surrounding areas
               </div>
 
               <h1
@@ -238,39 +270,68 @@ export default function App() {
                 style={{ fontFamily: "'Barlow', sans-serif" }}
               >
                 <span className="block text-3xl sm:text-4xl font-semibold text-[#D8D4C8]">
-                  On-call mobile mechanics and a
+                  On-call mobile mechanic for
                 </span>
                 <span
                   className="block text-6xl sm:text-7xl lg:text-8xl mt-1 tracking-wide"
                   style={{ fontFamily: "'Bebas Neue', sans-serif" }}
                 >
-                  Full-Service Workshop
+                  Automotive Repairs & Servicing
                 </span>
               </h1>
 
               <p className="mt-7 text-[15px] text-[#A9A59A] leading-relaxed max-w-lg">
                 Stuck on the road or broken down at home? From computerised
-                scanners and engine teardowns to precise wiring fixes and full
-                detailing, we bring the repair to your vehicle — or you bring
-                the vehicle to our Colac bay.
+                scanner diagnostics and engine repairs to auto electrical and
+                brake servicing, we come directly to you so you can skip the tow
+                truck.
               </p>
 
-              <div className="mt-9 flex flex-col sm:flex-row gap-3">
+              <div className="mt-9 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-lg">
+                {/* 1. Phone */}
                 <a
                   href={`tel:${phoneNumber}`}
-                  className="inline-flex items-center justify-center gap-3 bg-[#D89B3C] hover:bg-[#E4AB57] text-[#17181B] font-bold px-6 py-3.5 rounded-sm text-[15px] transition-all shadow-[4px_4px_0_0_#7A5820] hover:shadow-[2px_2px_0_0_#7A5820] hover:translate-x-[2px] hover:translate-y-[2px]"
+                  className="inline-flex items-center justify-center gap-2.5 bg-[#D89B3C] hover:bg-[#E4AB57] text-[#17181B] font-bold px-4 py-3 rounded-sm text-[14px] transition-all shadow-[3px_3px_0_0_#7A5820] hover:shadow-[1px_1px_0_0_#7A5820] hover:translate-x-[2px] hover:translate-y-[2px]"
                 >
-                  <Phone className="w-4 h-4" />
-                  Call {phoneNumber}
+                  <Phone className="w-4 h-4 shrink-0" />
+                  <span>Call {phoneNumber}</span>
                 </a>
+
+                {/* 2. WhatsApp */}
                 <a
-                  href={googleMapsUrl}
+                  href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-3 bg-transparent hover:bg-[#1E2024] text-[#D8D4C8] border border-[#3A3C41] font-medium px-6 py-3.5 rounded-sm text-[15px] transition-colors"
+                  className="inline-flex items-center justify-center gap-2.5 bg-[#25D366]/10 hover:bg-[#25D366]/20 text-[#25D366] border border-[#25D366]/40 font-semibold px-4 py-3 rounded-sm text-[14px] transition-colors"
                 >
-                  <Navigation className="w-4 h-4 text-[#D89B3C]" />
-                  Route on Google Maps
+                  <MessageCircle className="w-4 h-4 shrink-0" />
+                  <span>Chat on WhatsApp</span>
+                </a>
+
+                {/* 3. Email */}
+                <a
+                  href={`mailto:${emailAddress}`}
+                  className="inline-flex items-center justify-center gap-2.5 bg-[#1E2024] hover:bg-[#272A30] text-[#D8D4C8] border border-[#3A3C41] font-semibold px-4 py-3 rounded-sm text-[14px] transition-colors"
+                >
+                  <Mail className="w-4 h-4 text-[#D89B3C] shrink-0" />
+                  <span>Email Jerold</span>
+                </a>
+
+                {/* 4. Facebook */}
+                <a
+                  href={facebookUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2.5 bg-[#1877F2]/10 hover:bg-[#1877F2]/20 text-[#5B9DF6] border border-[#1877F2]/40 font-semibold px-4 py-3 rounded-sm text-[14px] transition-colors"
+                >
+                  <svg
+                    className="w-4 h-4 shrink-0 fill-current"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                  </svg>
+                  <span>Facebook Profile</span>
                 </a>
               </div>
             </div>
@@ -306,13 +367,13 @@ export default function App() {
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-[#D89B3C]" />
-              Workshop in Colac
+              Direct mechanic dispatch
             </div>
           </div>
         </div>
       </section>
 
-      {/* Services — larger work-order indicators */}
+      {/* Services with Centered 04 & 05 */}
       <section id="services" className="py-20 bg-[#1A1B1F]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl mb-14">
@@ -324,13 +385,70 @@ export default function App() {
             </h2>
             <p className="mt-3 text-[#A9A59A] max-w-lg">
               Scanning tools, replacement components, and full mechanical
-              capability, all under one call-out.
+              capability delivered right to your vehicle.
             </p>
           </div>
 
+          {/* Row 1: Services 01, 02, 03 */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
-            {services.map((service, index) => (
+            {services.slice(0, 3).map((service, index) => (
               <div key={index} className="group">
+                <div className="flex items-center justify-between gap-4 mb-3 pb-2 border-b border-[#2E3035]">
+                  <span
+                    className="text-[#848074] group-hover:text-[#D89B3C] text-4xl sm:text-5xl font-black leading-none transition-colors"
+                    style={{ fontFamily: "'Bebas Neue', sans-serif" }}
+                  >
+                    {service.number}
+                  </span>
+                  <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#D89B3C] bg-[#D89B3C]/10 border border-[#D89B3C]/50 px-3 py-1 rounded-xs">
+                    {service.badge}
+                  </span>
+                </div>
+
+                <div className="h-44 w-full bg-[#0F0F10] border border-[#2E3035] mb-4 overflow-hidden">
+                  {service.isVideo ? (
+                    <video
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-full object-cover"
+                    >
+                      <source src={service.image} type="video/mp4" />
+                    </video>
+                  ) : (
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.target.style.display = "none";
+                      }}
+                    />
+                  )}
+                </div>
+
+                <div className="flex items-start gap-3.5">
+                  <div className="w-10 h-10 bg-[#0F0F10] border border-[#2E3035] flex items-center justify-center text-[#D89B3C] shrink-0 mt-0.5">
+                    {service.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-white font-bold text-lg leading-snug mb-1.5">
+                      {service.title}
+                    </h3>
+                    <p className="text-sm text-[#9C988B] leading-relaxed">
+                      {service.desc}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Row 2: Services 04 & 05 centered */}
+          <div className="mt-12 flex flex-col md:flex-row justify-center gap-x-8 gap-y-12">
+            {services.slice(3, 5).map((service, index) => (
+              <div key={index} className="group w-full md:max-w-md">
                 <div className="flex items-center justify-between gap-4 mb-3 pb-2 border-b border-[#2E3035]">
                   <span
                     className="text-[#848074] group-hover:text-[#D89B3C] text-4xl sm:text-5xl font-black leading-none transition-colors"
@@ -448,10 +566,10 @@ export default function App() {
               </p>
 
               <p className="text-[#A9A59A] leading-relaxed max-w-xl">
-                Whether he's diagnosing an elusive electrical fault with digital
-                scan tools or doing a full brake rebuild in your driveway, you
-                deal directly with the person doing the work — no call centre,
-                no hand-off.
+                Whether diagnosing an elusive electrical fault with digital scan
+                tools or doing a full brake rebuild in your driveway, you deal
+                directly with the person doing the work — no call centre, no
+                hand-off.
               </p>
 
               <div className="flex flex-wrap gap-8 pt-2">
@@ -479,113 +597,26 @@ export default function App() {
                 </div>
               </div>
 
-              <div className="pt-2">
+              <div className="pt-2 flex flex-wrap gap-4 items-center">
                 <a
                   href={facebookUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-sm text-[#D8D4C8] border-b border-[#3A3C41] hover:border-[#D89B3C] hover:text-white pb-1 transition-colors"
                 >
-                  Visit Jerold's Facebook profile
+                  Facebook profile
                   <ExternalLink className="w-3.5 h-3.5 text-[#D89B3C]" />
                 </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Workshop */}
-      <section
-        id="shop"
-        className="py-20 bg-[#1A1B1F] border-t border-[#2A2C31]"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            <div className="lg:col-span-5 space-y-6">
-              <div className="flex items-center gap-2 text-[#D89B3C] text-sm">
-                <Store className="w-4 h-4" />
-                Physical workshop
-              </div>
-
-              <h2
-                className="text-4xl sm:text-5xl text-white tracking-wide leading-none"
-                style={{ fontFamily: "'Bebas Neue', sans-serif" }}
-              >
-                The Colac Bay
-              </h2>
-
-              <p className="text-[#A9A59A] leading-relaxed">
-                Need more than an on-site fix? The Colac workshop handles
-                complex mechanical overhauls, full wiring harnesses, and
-                intensive detailing jobs that need a lift and a bench.
-              </p>
-
-              <div className="bg-[#0F0F10] border border-[#2E3035] p-5 space-y-4">
-                <div className="flex items-start gap-3">
-                  <MapPin className="w-4 h-4 text-[#D89B3C] shrink-0 mt-1" />
-                  <div>
-                    <p className="text-xs text-[#8E8A7E]">Address</p>
-                    <p className="text-white text-sm font-medium">
-                      {shopAddress}
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Phone className="w-4 h-4 text-[#D89B3C] shrink-0 mt-1" />
-                  <div>
-                    <p className="text-xs text-[#8E8A7E]">Call ahead</p>
-                    <a
-                      href={`tel:${phoneNumber}`}
-                      className="text-[#D89B3C] text-sm font-semibold hover:underline"
-                    >
-                      {phoneNumber}
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <a
-                href={googleMapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-[#D89B3C] hover:bg-[#E4AB57] text-[#17181B] font-bold px-6 py-3 rounded-sm text-sm transition-all shadow-[3px_3px_0_0_#7A5820] hover:shadow-[1px_1px_0_0_#7A5820] hover:translate-x-[2px] hover:translate-y-[2px]"
-              >
-                <Navigation className="w-4 h-4" />
-                Open in Google Maps
-              </a>
-            </div>
-
-            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div className="sm:col-span-2 h-60 bg-[#0F0F10] border border-[#2E3035] overflow-hidden">
-                <img
-                  src="/shop-main.jpg"
-                  alt="K&S workshop frontage"
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.target.style.display = "none";
-                  }}
-                />
-              </div>
-              <div className="h-44 bg-[#0F0F10] border border-[#2E3035] overflow-hidden">
-                <img
-                  src="/shop-interior.jpg"
-                  alt="Workshop bays and lifts"
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.target.style.display = "none";
-                  }}
-                />
-              </div>
-              <div className="h-44 bg-[#0F0F10] border border-[#2E3035] overflow-hidden">
-                <img
-                  src="/shop-tools.jpg"
-                  alt="Detailing and diagnostics setup"
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.target.style.display = "none";
-                  }}
-                />
+                <span className="text-[#3A3C41]">•</span>
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm text-[#25D366] border-b border-[#25D366]/30 hover:border-[#25D366] pb-1 transition-colors"
+                >
+                  WhatsApp Jerold
+                  <MessageCircle className="w-3.5 h-3.5" />
+                </a>
               </div>
             </div>
           </div>
@@ -678,7 +709,7 @@ export default function App() {
                     onChange={(e) =>
                       setFormData({ ...formData, issue: e.target.value })
                     }
-                    placeholder="Car won't turn over, check-engine scan needed, wiring issue, detailing package..."
+                    placeholder="Car won't turn over, check-engine scan needed, brake inspection, wiring fault..."
                     className="w-full bg-transparent border-b-2 border-[#C9BF9F] px-0.5 py-2 text-[15px] text-[#17181B] placeholder:text-[#A39C7E] focus:outline-none focus:border-[#B3712A] transition-colors resize-none"
                   ></textarea>
                 </div>
@@ -727,40 +758,51 @@ export default function App() {
                   K&amp;S Mobile Tech
                 </p>
                 <p className="text-xs text-[#7A7669] mt-1">
-                  Automotive services &amp; general mechanical repairs
+                  Automotive servicing &amp; general mechanical repairs
                 </p>
               </div>
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs">
               <a
-                href={googleMapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-[#D89B3C] transition-colors flex items-center gap-1.5"
-              >
-                <MapPin className="w-3.5 h-3.5 text-[#D89B3C]" />
-                {shopAddress}
-              </a>
-              <a
                 href={`tel:${phoneNumber}`}
-                className="text-[#D89B3C] hover:underline"
+                className="text-[#D89B3C] hover:underline flex items-center gap-1"
               >
+                <Phone className="w-3.5 h-3.5" />
                 {phoneNumber}
               </a>
+              <span className="text-[#3A3C41]">•</span>
+              <a
+                href={`mailto:${emailAddress}`}
+                className="text-[#D89B3C] hover:underline flex items-center gap-1"
+              >
+                <Mail className="w-3.5 h-3.5" />
+                {emailAddress}
+              </a>
+              <span className="text-[#3A3C41]">•</span>
               <a
                 href={facebookUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#D89B3C] hover:underline flex items-center gap-1.5"
+                className="text-[#D89B3C] hover:underline flex items-center gap-1"
               >
-                Facebook: Jerold Escabusa
+                Facebook
                 <ExternalLink className="w-3 h-3" />
+              </a>
+              <span className="text-[#3A3C41]">•</span>
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#25D366] hover:underline flex items-center gap-1"
+              >
+                <MessageCircle className="w-3.5 h-3.5" />
+                WhatsApp
               </a>
             </div>
 
             <p className="text-xs text-[#5C594F]">
-              © {new Date().getFullYear()} K&S Mobile Tech.
+              © {new Date().getFullYear()} K&amp;S Mobile Tech.
             </p>
           </div>
         </div>
