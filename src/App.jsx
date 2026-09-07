@@ -575,18 +575,20 @@ export default function App() {
             <div className="lg:col-span-5 relative">
               <div className="grid grid-cols-2 gap-3">
                 <div className="col-span-2 sm:col-span-1 h-64 bg-[#1E2024] border border-[#2E3035] overflow-hidden">
-                  <img
-                    src="/pic2.png"
-                    alt="Jerold Escabusa, head mechanic"
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
                     className="w-full h-full object-cover"
-                    onError={(e) => {
-                      e.target.style.display = "none";
-                    }}
-                  />
+                  >
+                    <source src="/wrah.mp4" type="video/mp4" />
+                  </video>
                 </div>
+
                 <div className="col-span-2 sm:col-span-1 h-64 bg-[#1E2024] border border-[#2E3035] overflow-hidden">
                   <img
-                    src="/blur1.jpg"
+                    src="/bl.jpg"
                     alt="Jerold working on an engine"
                     className="w-full h-full object-cover"
                     onError={(e) => {
