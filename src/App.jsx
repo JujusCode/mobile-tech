@@ -44,7 +44,6 @@ export default function App() {
 
   const phoneNumber = "0431340980";
   const emailAddress = "jeroldinaus@gmail.com";
-  const facebookUrl = "https://www.facebook.com/jerold.escabusa";
   const whatsappUrl = "https://wa.me/61431340980";
   const logoPath = "/logo.jpg";
 
@@ -165,7 +164,7 @@ export default function App() {
     e.preventDefault();
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
-      const headerOffset = 110;
+      const headerOffset = 82;
       const elementPosition = targetElement.getBoundingClientRect().top;
       const offsetPosition =
         elementPosition + window.pageYOffset - headerOffset;
@@ -293,12 +292,12 @@ export default function App() {
                 truck.
               </p>
 
-              {/* 4 Contact Buttons in Hero */}
-              <div className="mt-9 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-lg">
+              {/* Direct Contact Buttons */}
+              <div className="mt-9 flex flex-wrap gap-3 max-w-lg">
                 {/* 1. Phone */}
                 <a
                   href={`tel:${phoneNumber}`}
-                  className="inline-flex items-center justify-center gap-2.5 bg-[#D89B3C] hover:bg-[#E4AB57] text-[#17181B] font-bold px-4 py-3 rounded-sm text-[14px] transition-all shadow-[3px_3px_0_0_#7A5820] hover:shadow-[1px_1px_0_0_#7A5820] hover:translate-x-[2px] hover:translate-y-[2px]"
+                  className="inline-flex items-center justify-center gap-2.5 bg-[#D89B3C] hover:bg-[#E4AB57] text-[#17181B] font-bold px-5 py-3 rounded-sm text-[14px] transition-all shadow-[3px_3px_0_0_#7A5820] hover:shadow-[1px_1px_0_0_#7A5820] hover:translate-x-[2px] hover:translate-y-[2px]"
                 >
                   <Phone className="w-4 h-4 shrink-0" />
                   <span>Call {phoneNumber}</span>
@@ -309,7 +308,7 @@ export default function App() {
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2.5 bg-[#25D366]/10 hover:bg-[#25D366]/20 text-[#25D366] border border-[#25D366]/40 font-semibold px-4 py-3 rounded-sm text-[14px] transition-colors"
+                  className="inline-flex items-center justify-center gap-2.5 bg-[#25D366]/10 hover:bg-[#25D366]/20 text-[#25D366] border border-[#25D366]/40 font-semibold px-5 py-3 rounded-sm text-[14px] transition-colors"
                 >
                   <MessageCircle className="w-4 h-4 shrink-0" />
                   <span>Chat on WhatsApp</span>
@@ -319,28 +318,11 @@ export default function App() {
                 <button
                   type="button"
                   onClick={() => setEmailModalOpen(true)}
-                  className="inline-flex items-center justify-center gap-2.5 bg-[#1E2024] hover:bg-[#272A30] text-[#D8D4C8] border border-[#3A3C41] font-semibold px-4 py-3 rounded-sm text-[14px] transition-colors"
+                  className="inline-flex items-center justify-center gap-2.5 bg-[#1E2024] hover:bg-[#272A30] text-[#D8D4C8] border border-[#3A3C41] font-semibold px-5 py-3 rounded-sm text-[14px] transition-colors"
                 >
                   <Mail className="w-4 h-4 text-[#D89B3C] shrink-0" />
                   <span>Email Jerold</span>
                 </button>
-
-                {/* 4. Facebook */}
-                <a
-                  href={facebookUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2.5 bg-[#1877F2]/10 hover:bg-[#1877F2]/20 text-[#5B9DF6] border border-[#1877F2]/40 font-semibold px-4 py-3 rounded-sm text-[14px] transition-colors"
-                >
-                  <svg
-                    className="w-4 h-4 shrink-0 fill-current"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                  </svg>
-                  <span>Facebook Profile</span>
-                </a>
               </div>
             </div>
 
@@ -609,16 +591,6 @@ export default function App() {
 
               <div className="pt-2 flex flex-wrap gap-4 items-center">
                 <a
-                  href={facebookUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm text-[#D8D4C8] border-b border-[#3A3C41] hover:border-[#D89B3C] hover:text-white pb-1 transition-colors"
-                >
-                  Facebook profile
-                  <ExternalLink className="w-3.5 h-3.5 text-[#D89B3C]" />
-                </a>
-                <span className="text-[#3A3C41]">•</span>
-                <a
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -790,16 +762,6 @@ export default function App() {
                 <Mail className="w-3.5 h-3.5" />
                 {emailAddress}
               </button>
-              <span className="text-[#3A3C41]">•</span>
-              <a
-                href={facebookUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#D89B3C] hover:underline flex items-center gap-1"
-              >
-                Facebook
-                <ExternalLink className="w-3 h-3" />
-              </a>
               <span className="text-[#3A3C41]">•</span>
               <a
                 href={whatsappUrl}
